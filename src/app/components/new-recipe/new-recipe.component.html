@@ -77,6 +77,75 @@
         />
       </div>
 
+      <hr />
+      <div formArrayName="allergens">
+        <h4>Alergenai</h4>
+        <div
+          *ngFor="let phoneControl of allergens(); let i = index"
+          class="mb-3"
+        >
+          <input type="text" class="form-control" [formControlName]="i" />
+        </div>
+      </div>
+      <button type="button" class="btn btn-info" (click)="addAllergens()">
+        Pridėti Alergeną
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger float-end"
+        (click)="deleteAllergens()"
+      >
+        Ištrinti Alergeną
+      </button>
+      <hr />
+
+      <div formArrayName="ingredients">
+        <h4>Ingridientai</h4>
+        <div
+          class="mb-3 row"
+          *ngFor="let ingredient of ingredients(); let i = index"
+          [formGroup]="abstractToFormGroup(ingredient)"
+        >
+          <div class="col-md-5">
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              placeholder="Produkto pavadinimas"
+            />
+          </div>
+          <div class="col-md-3">
+            <input
+              type="number"
+              formControlName="quantity"
+              class="form-control"
+              placeholder="Kiekis"
+            />
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" formControlName="units">
+              <option selected>Matavimo vienetai</option>
+              <option value="1">vnt</option>
+              <option value="2">kg</option>
+              <option value="3">g</option>
+              <option value="4">stikline</option>
+              <option value="5">l</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-info" (click)="addIngredients()">
+        Pridėti Ingredientą
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger float-end"
+        (click)="deleteIngredients()"
+      >
+        Ištrinti Ingredientą
+      </button>
+      <hr />
+
       <button
         type="submit"
         class="btn btn-success"
