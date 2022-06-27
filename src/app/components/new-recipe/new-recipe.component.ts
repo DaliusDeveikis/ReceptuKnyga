@@ -16,7 +16,7 @@ export class NewRecipeComponent implements OnInit {
       name: new FormControl(null, [
         Validators.required,
         Validators.maxLength(30),
-      ]),
+      ],this.RecipeValidator()),
       preparationTime: new FormControl(null, [
         Validators.required,
         this.timeValidator,
@@ -26,7 +26,7 @@ export class NewRecipeComponent implements OnInit {
       kcal: new FormControl(null),
       allergens: new FormArray([]),
       ingredients: new FormArray([]),
-      mealTime: new FormControl(null, this.RecipeValidator()),
+      mealTime: new FormControl(null, Validators.required),
     });
   }
 
