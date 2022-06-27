@@ -19,7 +19,7 @@
       </div>
       <div class="mb-3">
         <label for="preparationTime" class="form-label"
-          >Gaminimo trukmė (minutėmis):</label
+          >Pasiruošimo laikas (minutėmis):</label
         >
         <input
           type="number"
@@ -34,6 +34,15 @@
           "
           >Trukmė įvesta neteisingai (vedama 5 min. intervalais)</span
         >
+      </div>
+      <div class="mb-3">
+        <label for="mealTime">Rekomenduojamas laikas:</label>
+        <select id="mealTime" formControlName="mealTime" class="form-select">
+          <option value="Pusryčiai">Pusryčiai</option>
+          <option value="Priešpiečiai">Priešpiečiai</option>
+          <option value="Pietūs">Pietūs</option>
+          <option value="Vakarienė">Vakarienė</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Aprašymas:</label>
@@ -122,7 +131,7 @@
               placeholder="Kiekis"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <select class="form-select" formControlName="units">
               <option selected>Matavimo vienetai</option>
               <option value="1">vnt</option>
@@ -132,18 +141,21 @@
               <option value="5">l</option>
             </select>
           </div>
+          <div class="col-md-2 float-end">
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteIngredients(i)"
+            >
+              Ištrinti Ingredientą
+            </button>
+          </div>
         </div>
       </div>
       <button type="button" class="btn btn-info" (click)="addIngredients()">
         Pridėti Ingredientą
       </button>
-      <button
-        type="button"
-        class="btn btn-danger float-end"
-        (click)="deleteIngredients()"
-      >
-        Ištrinti Ingredientą
-      </button>
+
       <hr />
 
       <button

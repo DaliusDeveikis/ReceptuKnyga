@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { map, Observable } from 'rxjs';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-new-recipe',
@@ -9,7 +11,7 @@ import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '
 export class NewRecipeComponent implements OnInit {
   public recipeForm: FormGroup;
 
-  constructor() {
+  constructor(private recipeService: RecipeService) {
     this.recipeForm = new FormGroup({
       name: new FormControl(null, [
         Validators.required,
@@ -23,11 +25,34 @@ export class NewRecipeComponent implements OnInit {
       image: new FormControl(null, [Validators.required, this.urlValidator]),
       kcal: new FormControl(null),
       allergens: new FormArray([]),
-      ingredients: new FormArray([])
+      ingredients: new FormArray([]),
+      mealTime: new FormControl(null, this.RecipeValidator()),
     });
   }
 
   ngOnInit(): void {}
+
+  RecipeValidator():AsyncValidatorFn{
+    return (control:AbstractControl):Observable<ValidationErrors|null>=>{
+      return this.recipeService.getRecipes().pipe( map((response)=>{
+          let exist=false;
+          response.forEach((recipe)=>{
+            if (recipe.name === control.value &&
+              recipe.mealTime === this.recipeForm.get('mealTime')?.value){
+              exist=true;
+            }
+          });
+          if (exist){
+            console.log("Toks pavadinimas egzistuoja tokiam laikui")
+            return {"error":"Toks pavadinimas egzistuoja tokiam laikui"};
+          }else{
+            console.log("Viskas Ok!")
+            return null;
+          }
+          
+      }))
+    }
+  }
 
   timeValidator(control: FormControl): { [s: string]: boolean } | null {
     if (control.value % 5) {
@@ -49,7 +74,11 @@ export class NewRecipeComponent implements OnInit {
   }
 
   public addRecipe() {
-    console.log(this.recipeForm);
+    this.recipeService.addRecipe(this.recipeForm.value).subscribe(()=>{
+      console.log(this.recipeForm.value)
+    });
+    
+    
   }
 
   public addAllergens() {
@@ -74,8 +103,8 @@ export class NewRecipeComponent implements OnInit {
     (<FormArray> this.recipeForm.get('ingredients')).push(address);
   }
 
-  public deleteIngredients() {
-    (this.recipeForm.get('ingredients') as FormArray).removeAt(-1);
+  public deleteIngredients(allergen : number) {
+    (this.recipeForm.get('ingredients') as FormArray).removeAt(allergen);
   }
 
   public ingredients(){

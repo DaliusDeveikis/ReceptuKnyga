@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { NewRecipeComponent } from './components/new-recipe/new-recipe.component';
+import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewRecipeComponent
+    NewRecipeComponent,
+    RecipeListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
