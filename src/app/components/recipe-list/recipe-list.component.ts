@@ -17,6 +17,11 @@ export class RecipeListComponent implements OnInit {
     this.recipeService.getRecipes().subscribe((response)=>{
       this.recipes=response;
     })
+    this.recipeService.increaseLikeEmitter.subscribe(() => {
+      this.recipeService.getRecipes().subscribe((response)=>{
+        this.recipes=response;
+      })
+    })
   }
 
   public ingrediants() {
@@ -25,6 +30,13 @@ export class RecipeListComponent implements OnInit {
       ingrediants.push(recipe.ingredients[i])
     })
     return ingrediants
+  }
+
+  public increaseLikes(id?:string) {
+    if (id != null) {
+      this.recipeService.increaseLikes(id);
+    }
+    
   }
 
 }

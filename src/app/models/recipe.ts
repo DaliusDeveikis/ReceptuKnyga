@@ -7,5 +7,6 @@ export interface Recipe {
   kcal:string
   allergens: string[]
   ingredients: {[key: string]: string}
+  likes: number;
   mealTime: string;
 }

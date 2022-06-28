@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
+import { AddIngridientsService } from 'src/app/services/add-ingridients.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
@@ -10,8 +11,12 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class NewRecipeComponent implements OnInit {
   public recipeForm: FormGroup;
+  public ingridients:{ingridients:string}[]=[];
 
-  constructor(private recipeService: RecipeService) {
+  constructor(
+    private recipeService: RecipeService,
+    private addIngridientsService: AddIngridientsService
+    ) {
     this.recipeForm = new FormGroup({
       name: new FormControl(null, [
         Validators.required,
@@ -30,7 +35,12 @@ export class NewRecipeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getIngridients();
+    this.addIngridientsService.ingridientsEmitter.subscribe(()=>{
+      this.getIngridients();
+    });
+  }
 
   RecipeValidator():AsyncValidatorFn{
     return (control:AbstractControl):Observable<ValidationErrors|null>=>{
@@ -73,6 +83,12 @@ export class NewRecipeComponent implements OnInit {
     }
   }
 
+  private getIngridients(){
+    this.addIngridientsService.getIngridients().subscribe((result)=>{
+      this.ingridients = result;
+    });
+  }
+
   public addRecipe() {
     this.recipeService.addRecipe(this.recipeForm.value).subscribe(()=>{
       console.log(this.recipeForm.value)
@@ -95,12 +111,12 @@ export class NewRecipeComponent implements OnInit {
   }
 
   public addIngredients(){
-    const address=new FormGroup({
-      name:new FormControl(null,Validators.required),
+    const ingridients=new FormGroup({
+      ingridients:new FormControl(null,Validators.required),
       quantity:new FormControl(null, Validators.required),
       units:new FormControl(null, Validators.required)
     });
-    (<FormArray> this.recipeForm.get('ingredients')).push(address);
+    (<FormArray> this.recipeForm.get('ingredients')).push(ingridients);
   }
 
   public deleteIngredients(allergen : number) {

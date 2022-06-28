@@ -116,12 +116,11 @@
           [formGroup]="abstractToFormGroup(ingredient)"
         >
           <div class="col-md-5">
-            <input
-              type="text"
-              formControlName="name"
-              class="form-control"
-              placeholder="Produkto pavadinimas"
-            />
+            <select class="form-control" formControlName="ingridients">
+              <option *ngFor="let ingridient of ingridients">
+                {{ ingridient.ingridients }}
+              </option>
+            </select>
           </div>
           <div class="col-md-3">
             <input
