@@ -15,9 +15,9 @@ export class AddIngridientsComponent implements OnInit {
   }
 
   public addIngridients(){
-    // this.addIngridientsService.addIngridients(this.ingridients).subscribe(()=>{
-    //   this.ingridients="";
-    // });
+    this.addIngridientsService.addIngridients(this.ingridients).subscribe(()=>{
+      this.ingridients="";
+    });
 
   }
 
