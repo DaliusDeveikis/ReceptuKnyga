@@ -3,6 +3,7 @@ import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, V
 import { map, Observable } from 'rxjs';
 import { AddIngridientsService } from 'src/app/services/add-ingridients.service';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { RecipecountService } from 'src/app/services/recipecount.service';
 
 @Component({
   selector: 'app-new-recipe',
@@ -13,9 +14,15 @@ export class NewRecipeComponent implements OnInit {
   public recipeForm: FormGroup;
   public ingridients:{ingridients:string}[]=[];
 
+  public breakfast: number = 0
+  public lunch: number = 0
+  public dinner: number = 0
+  public eveningMeal: number = 0
+
   constructor(
     private recipeService: RecipeService,
-    private addIngridientsService: AddIngridientsService
+    private addIngridientsService: AddIngridientsService,
+    private recipecountService: RecipecountService
     ) {
     this.recipeForm = new FormGroup({
       name: new FormControl(null, [
@@ -91,10 +98,25 @@ export class NewRecipeComponent implements OnInit {
 
   public addRecipe() {
     this.recipeService.addRecipe(this.recipeForm.value).subscribe(()=>{
-      console.log(this.recipeForm.value)
+      this.recipecountService.addRecipecount({"breakfast":this.breakfast, "lunch": this.lunch, "dinner": this.dinner, "eveningMeal": this.eveningMeal}).subscribe((result)=> {
+      })
     });
-    
-    
+  }
+
+  public addRecipecount() {
+    this.recipecountService.getRecipes().subscribe((result)=> {
+      for (let meal of result) {
+        switch (meal.mealTime) {
+          case "breakfast" : this.breakfast++
+          break
+          case "lunch" : this.breakfast++
+          break
+          case "dinner" : this.breakfast++
+          break
+          case "eveningMeal" : this.breakfast++
+        }
+      }
+    })
   }
 
   public addAllergens() {
