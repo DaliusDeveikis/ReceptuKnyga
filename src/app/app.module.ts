@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { NewRecipeComponent } from './components/new-recipe/new-recipe.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { AddIngridientsComponent } from './components/add-ingridients/add-ingridients.component';
+import { RecipecountComponent } from './components/recipecount/recipecount.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewRecipeComponent,
     RecipeListComponent,
-    AddIngridientsComponent
+    AddIngridientsComponent,
+    RecipecountComponent
   ],
   imports: [
     BrowserModule,

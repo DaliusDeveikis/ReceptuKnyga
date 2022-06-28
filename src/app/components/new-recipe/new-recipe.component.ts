@@ -31,7 +31,7 @@ export class NewRecipeComponent implements OnInit {
       kcal: new FormControl(null),
       allergens: new FormArray([]),
       ingredients: new FormArray([]),
-      mealTime: new FormControl(null, Validators.required),
+      mealTime: new FormControl(null),
     });
   }
 

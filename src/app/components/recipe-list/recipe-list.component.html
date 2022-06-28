@@ -6,6 +6,7 @@
         <tr>
           <th>Recepto pavadinimas</th>
           <th>Pasiruošimo laikas</th>
+          <th>Recepto metas</th>
           <th>Apibudinimas</th>
           <th>Nuotrauka</th>
           <th>Kalorijos</th>
@@ -19,6 +20,7 @@
         <tr *ngFor="let recipe of recipes">
           <td>{{ recipe.name }}</td>
           <td>{{ recipe.preparationTime }}</td>
+          <td>{{ recipe.mealTime }}</td>
           <td>{{ recipe.description }}</td>
           <td><img src="{{ recipe.image }}" alt="" class="img-thumbnail" /></td>
           <td>{{ recipe.kcal }}</td>
