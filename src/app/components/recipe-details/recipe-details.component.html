@@ -24,6 +24,13 @@
         >{{ allergen }}&nbsp;&nbsp;</span
       >
     </p>
+    <p>
+      Ingridientai:
+      <span *ngFor="let ingredient of recipe?.ingredients"
+        >{{ ingredient.name }} {{ ingredient.amount
+        }}{{ ingredient.unit }} &nbsp;&nbsp;</span
+      >
+    </p>
   </div>
   <div class="card-footer">
     <div class="float-start">

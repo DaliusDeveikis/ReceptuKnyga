@@ -6,7 +6,7 @@ export interface Recipe {
   image:string;
   kcal:string
   allergens: string[]
-  ingredients: {[key: string]: string}
+  ingredients: { name: string; amount: number; unit: string }[]
   likes: number;
   mealTime: string;
 }

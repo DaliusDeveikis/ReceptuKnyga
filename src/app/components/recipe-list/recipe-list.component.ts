@@ -24,14 +24,6 @@ export class RecipeListComponent implements OnInit {
     })
   }
 
-  public ingrediants() {
-    let ingrediants: string[] = []
-    this.recipes.forEach((recipe, i) => {
-      ingrediants.push(recipe.ingredients[i])
-    })
-    return ingrediants
-  }
-
   public increaseLikes(id?:string) {
     if (id != null) {
       this.recipeService.increaseLikes(id);
