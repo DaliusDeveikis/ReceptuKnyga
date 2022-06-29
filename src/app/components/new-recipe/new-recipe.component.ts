@@ -99,6 +99,7 @@ export class NewRecipeComponent implements OnInit {
   public addRecipe() {
     this.recipeService.addRecipe(this.recipeForm.value).subscribe(()=>{
       this.recipecountService.addRecipecount({"breakfast":this.breakfast, "lunch": this.lunch, "dinner": this.dinner, "eveningMeal": this.eveningMeal}).subscribe((result)=> {
+        this.addRecipecount()
       })
     });
   }

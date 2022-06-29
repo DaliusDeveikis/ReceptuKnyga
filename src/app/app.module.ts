@@ -8,20 +8,29 @@ import { NewRecipeComponent } from './components/new-recipe/new-recipe.component
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { AddIngridientsComponent } from './components/add-ingridients/add-ingridients.component';
 import { RecipecountComponent } from './components/recipecount/recipecount.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { RecipeItemComponent } from './components/recipe-list/recipe-item/recipe-item.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     NewRecipeComponent,
     RecipeListComponent,
     AddIngridientsComponent,
-    RecipecountComponent
+    RecipecountComponent,
+    NavigationComponent,
+    RecipeItemComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

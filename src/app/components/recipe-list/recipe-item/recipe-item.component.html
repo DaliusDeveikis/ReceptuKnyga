@@ -1,0 +1,21 @@
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="{{ recipe?.image }}" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">{{ recipe?.name }}</h5>
+    <p class="card-text">
+      {{ recipe?.description }}
+    </p>
+    <div class="float-start">
+      <span class="text-muted">
+        Patiktuku: <b>{{ recipe?.likes }}</b></span
+      >
+    </div>
+    <button
+      href="#"
+      class="btn btn-primary btn-sm float-end"
+      (click)="recipeDetails(recipe?.id)"
+    >
+      Detaliau
+    </button>
+  </div>
+</div>

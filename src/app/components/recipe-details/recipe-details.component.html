@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header">Recepto informacija</div>
+  <div class="card-body">
+    <h5 class="card-title">
+      Pavadinimas: <b>{{ recipe?.name }}</b>
+    </h5>
+    <img src="{{ recipe?.image }}" alt="" />
+    <hr />
+    <p>
+      Gaminimo laikas: <b>{{ recipe?.preparationTime }}</b>
+    </p>
+    <p>
+      Aprašymas: <b>{{ recipe?.description }}</b>
+    </p>
+    <p>
+      Kalorojos: <b>{{ recipe?.kcal }}</b>
+    </p>
+    <p>
+      Recepto metas: <b>{{ recipe?.mealTime }}</b>
+    </p>
+    <p>
+      Alergenai:
+      <span *ngFor="let allergen of recipe?.allergens"
+        >{{ allergen }}&nbsp;&nbsp;</span
+      >
+    </p>
+  </div>
+  <div class="card-footer">
+    <div class="float-start">
+      <span class="text-muted">
+        Patiktukai: <b>{{ recipe?.likes }}</b></span
+      >
+    </div>
+    <button
+      class="btn btn-success float-end btn-sm"
+      (click)="increaseLikes(recipe?.id)"
+    >
+      Patinka
+    </button>
+  </div>
+</div>

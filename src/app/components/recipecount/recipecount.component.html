@@ -1,15 +1,11 @@
 <div class="card">
   <div class="card-header">Kokie valgymo laikai:</div>
   <div class="card-body">
-    <div class="row" *ngFor="let count of recipeCount">
-      <label for="" class="form-label">Breakfast</label>
-      <label for="" class="form-label">Vienetai: {{ count.breakfast }}</label>
-      <label for="" class="form-label">Lunch</label>
-      <label for="" class="form-label">Vienetai: {{ count.lunch }}</label>
-      <label for="" class="form-label">Dinner</label>
-      <label for="" class="form-label">Vienetai: {{ count.dinner }}</label>
-      <label for="" class="form-label">eveningMeal</label>
-      <label for="" class="form-label">Vienetai: {{ count.eveningMeal }}</label>
+    <div class="row">
+      {{ breakfast }}
+      {{ dinner }}
+      {{ lunch }}
+      {{ eveningMeal }}
     </div>
   </div>
 </div>

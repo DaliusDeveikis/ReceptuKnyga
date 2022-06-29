@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { Recipe } from '../models/recipe';
 
@@ -8,9 +9,13 @@ import { Recipe } from '../models/recipe';
 })
 export class RecipeService {
   private readonly url = 'https://receptuknyga-b6875-default-rtdb.europe-west1.firebasedatabase.app/'
+  public recipe:Recipe[]=[];
 
   public increaseLikeEmitter = new EventEmitter()
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router:Router
+    ) { }
 
   public addRecipe(recipe: Recipe) {
     return this.http.post(this.url + 'recipes.json', recipe)
@@ -23,9 +28,23 @@ export class RecipeService {
         for (let key in response){
           recipes.push({...response[key],id:key});
         }
+        this.recipe = recipes;
         return recipes;
       })
     )
+  }
+
+  public getRecipe(id:string):Recipe|null{
+    let result:Recipe|null=null;
+    this.recipe.forEach((recipe)=>{
+      if (recipe.id!=null && recipe.id==id){
+        result=recipe;
+      }
+    });
+    if (result==null){
+      this.router.navigate(["/"]);
+    }
+    return result;
   }
 
   public increaseLikes(id: string) {
