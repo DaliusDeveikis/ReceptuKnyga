@@ -95,11 +95,11 @@ export class NewRecipeComponent implements OnInit {
     });
     this.recipeForm.statusChanges.subscribe((response)=> {
       if (response == 'VALID'){
-        this.validForm = 'VALID';
+        this.validForm = 'true';
       } else {
-        this.validForm = 'INVALID';
+        this.validForm = 'false';
       }
-      return this.validForm;
+      console.log(this.validForm)
     })
   }
 
@@ -147,7 +147,6 @@ export class NewRecipeComponent implements OnInit {
   private getIngridients(){
     this.addIngridientsService.getIngridients().subscribe((result)=>{
       this.ingridients = result;
-      console.log(result)
     });
   }
 
