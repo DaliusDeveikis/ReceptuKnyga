@@ -13,17 +13,17 @@ export class AddIngridientsService {
 
   public addIngridients(ingridient:string){
     
-    return this.http.post(this.url+"recipes.json", {ingridients:ingridient}).pipe(tap((response)=>{
+    return this.http.post(this.url+"ingredients.json", {ingridient}).pipe(tap((response)=>{
       this.ingridientsEmitter.emit();
     }));
     
   }
 
   getIngridients(){
-    return this.http.get<{[key:string]:{ingridients:string}}>(this.url+"recipes.json").pipe(map((response)=>{
-      let result:{ingridients:string}[]=[];
+    return this.http.get<{[key:string]:{ingridient:string}}>(this.url+"ingredients.json").pipe(map((response)=>{
+      let result:{ingridient:string}[]=[];
       for (let key in response){
-        result.push( {ingridients:response[key].ingridients} );
+        result.push( {ingridient:response[key].ingridient} );
       } 
       return result;
     }));

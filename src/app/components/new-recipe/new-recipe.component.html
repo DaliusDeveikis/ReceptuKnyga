@@ -48,8 +48,11 @@
         <label for="description" class="form-label">Aprašymas:</label>
         <textarea
           id="description"
-          class="form-control"
+          class="form-control textareanimation"
+          [@textareanimation]="textArea"
           formControlName="description"
+          (focus)="onFocus()"
+          (focusout)="onFocusOut()"
         >
 Įveskite recepto aprašymą.</textarea
         >
@@ -116,22 +119,23 @@
           [formGroup]="abstractToFormGroup(ingredient)"
         >
           <div class="col-md-5">
-            <select class="form-control" formControlName="ingridients">
+            <select class="form-control" formControlName="name">
+              <option value="">Pasirinkti</option>
               <option *ngFor="let ingridient of ingridients">
-                {{ ingridient.ingridients }}
+                {{ ingridient.ingridient }}
               </option>
             </select>
           </div>
           <div class="col-md-3">
             <input
               type="number"
-              formControlName="quantity"
+              formControlName="amount"
               class="form-control"
               placeholder="Kiekis"
             />
           </div>
           <div class="col-md-2">
-            <select class="form-select" formControlName="units">
+            <select class="form-select" formControlName="unit">
               <option selected>Matavimo vienetai</option>
               <option value="1">vnt</option>
               <option value="2">kg</option>
@@ -161,6 +165,7 @@
         type="submit"
         class="btn btn-success"
         [disabled]="!recipeForm.valid"
+        [@btnAnimate]="validForm"
       >
         Pridėti
       </button>

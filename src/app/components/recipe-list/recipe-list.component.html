@@ -1,6 +1,63 @@
+<div class="row mb-3">
+  <div class="col-md-4 text-end">Filtruoti:</div>
+  <div class="col-md-8">
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="visi"
+        [(ngModel)]="allMeals"
+        value="0"
+        (change)="filter()"
+        checked
+      />
+      <label class="form-check-label" for="visi">Visi</label>
+    </div>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="pusryciai"
+        [(ngModel)]="breakfast"
+        (change)="filter()"
+      />
+      <label class="form-check-label" for="pusryciai">Pusryciai</label>
+    </div>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="priespiciai"
+        [(ngModel)]="lunch"
+        (change)="filter()"
+      />
+      <label class="form-check-label" for="priespiciai">Priespiciai</label>
+    </div>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="pietus"
+        [(ngModel)]="dinner"
+        (change)="filter()"
+      />
+      <label class="form-check-label" for="pietus">Pietus</label>
+    </div>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="vakariene"
+        [(ngModel)]="eveningMeal"
+        (change)="filter()"
+      />
+      <label class="form-check-label" for="vakariene">Vakariene</label>
+    </div>
+  </div>
+</div>
 <div class="row">
   <app-recipe-item
-    *ngFor="let recipe of recipes"
+    *ngFor="let recipe of recipesDisplay"
     class="col-lg-3 col-md-4"
     [recipe]="recipe"
   ></app-recipe-item>

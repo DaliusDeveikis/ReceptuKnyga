@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
@@ -9,10 +10,55 @@ import { RecipecountService } from 'src/app/services/recipecount.service';
   selector: 'app-new-recipe',
   templateUrl: './new-recipe.component.html',
   styleUrls: ['./new-recipe.component.css'],
+  animations: [
+    trigger("textareanimation", [
+      state('open', style({
+        height: '200px',
+        fontSize: '50px'
+      })),
+      state('closed', style({
+        height: '100px',
+        fontSize: '20px'
+
+      })),
+      transition('open => closed', [
+      ]),
+      transition('closed => open', [
+      ]),
+    ]
+   ),
+
+   trigger("btnAnimate",
+    [
+      state("true", style({
+        "opacity": "1",
+        backgroundColor: 'pink'
+      })),
+      state("false", style({
+        "opacity": "0",
+        backgroundColor: 'purple'
+      })),
+      transition('true=>false',[
+        animate(100, style({ transform: 'translateX(100%)' })),
+        animate(1000)
+     ]),
+      transition('false=>true',[
+        animate(100, style({ transform: 'translateX(50%)' })),
+        animate(1000)
+     ]),
+    ]
+    ),
+
+
+  ]
 })
+
 export class NewRecipeComponent implements OnInit {
   public recipeForm: FormGroup;
-  public ingridients:{ingridients:string}[]=[];
+  public ingridients:{ingridient:string}[] = [];
+
+  public textArea:string = "closed"
+  public validForm: string = 'INVALID'
 
   public breakfast: number = 0
   public lunch: number = 0
@@ -47,6 +93,14 @@ export class NewRecipeComponent implements OnInit {
     this.addIngridientsService.ingridientsEmitter.subscribe(()=>{
       this.getIngridients();
     });
+    this.recipeForm.statusChanges.subscribe((response)=> {
+      if (response == 'VALID'){
+        this.validForm = 'VALID';
+      } else {
+        this.validForm = 'INVALID';
+      }
+      return this.validForm;
+    })
   }
 
   RecipeValidator():AsyncValidatorFn{
@@ -93,6 +147,7 @@ export class NewRecipeComponent implements OnInit {
   private getIngridients(){
     this.addIngridientsService.getIngridients().subscribe((result)=>{
       this.ingridients = result;
+      console.log(result)
     });
   }
 
@@ -135,12 +190,14 @@ export class NewRecipeComponent implements OnInit {
 
   public addIngredients(){
     const ingridients=new FormGroup({
-      ingridients:new FormControl(null,Validators.required),
-      quantity:new FormControl(null, Validators.required),
-      units:new FormControl(null, Validators.required)
+      name:new FormControl(null,Validators.required),
+      amount:new FormControl(null, Validators.required),
+      unit:new FormControl(null, Validators.required)
     });
     (<FormArray> this.recipeForm.get('ingredients')).push(ingridients);
   }
+
+  
 
   public deleteIngredients(allergen : number) {
     (this.recipeForm.get('ingredients') as FormArray).removeAt(allergen);
@@ -152,6 +209,24 @@ export class NewRecipeComponent implements OnInit {
 
   public abstractToFormGroup(formGroup:AbstractControl){
     return formGroup as FormGroup;
+  }
+
+  public onFocus() {
+    console.log('open')
+    if (this.textArea == "closed") {
+      this.textArea = 'open'
+    } else {
+      this.textArea == "closed"
+    }
+  }
+
+  public onFocusOut() {
+    console.log('closed')
+    if (this.textArea == "open") {
+      this.textArea = 'closed'
+    } else {
+      this.textArea == "open"
+    }
   }
 
 }
