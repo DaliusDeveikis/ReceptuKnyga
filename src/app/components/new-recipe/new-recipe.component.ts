@@ -35,7 +35,7 @@ import { RecipecountService } from 'src/app/services/recipecount.service';
         backgroundColor: 'pink'
       })),
       state("false", style({
-        "opacity": "0",
+        "opacity": "0.2",
         backgroundColor: 'purple'
       })),
       transition('true=>false',[
