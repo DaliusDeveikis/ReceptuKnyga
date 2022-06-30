@@ -58,7 +58,7 @@ export class NewRecipeComponent implements OnInit {
   public ingridients:{ingridient:string}[] = [];
 
   public textArea:string = "closed"
-  public validForm: string = 'INVALID'
+  public validForm: string = 'false'
 
   public breakfast: number = 0
   public lunch: number = 0
