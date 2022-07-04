@@ -1,4 +1,3 @@
-import { DocumentationModule } from './documentation/documentation.module';
 import { AboutModule } from './about/about.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -36,7 +35,6 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     AppRoutingModule,
     BrowserAnimationsModule,
     AboutModule,
-    DocumentationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
