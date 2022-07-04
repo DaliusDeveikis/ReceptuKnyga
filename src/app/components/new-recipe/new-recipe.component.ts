@@ -39,7 +39,7 @@ import { RecipecountService } from 'src/app/services/recipecount.service';
         backgroundColor: 'purple'
       })),
       transition('true=>false',[
-        animate(100, style({ transform: 'translateX(100%)' })),
+        animate(100, style({ transform: 'translateX(200%)' })),
         animate(1000)
      ]),
       transition('false=>true',[
@@ -48,6 +48,52 @@ import { RecipecountService } from 'src/app/services/recipecount.service';
      ]),
     ]
     ),
+
+    trigger('ingAnimation', [
+      state(
+        'show',
+        style({
+          opacity: '1',
+          height: '30px',
+        })
+      ),
+      transition('void=>*', [
+        style({
+          opacity: '0',
+          height: '0px',
+        }),
+        animate(
+          500,
+          style({
+            height: '30px',
+          })
+        ),
+        animate(
+          750,
+          style({
+            opacity: '1',
+          })
+        ),
+      ]),
+      transition('*=>void', [
+        style({
+          opacity: '1',
+          height: '30px',
+        }),
+        animate(
+          750,
+          style({
+            transform: 'translateX(5000px)',
+          })
+        ),
+        animate(
+          500,
+          style({
+            height: '0px',
+          })
+        ),
+      ]),
+    ]),
 
 
   ]
