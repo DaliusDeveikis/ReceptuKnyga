@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { map , tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddIngridientsService {
-  private readonly url = 'https://receptuknyga-b6875-default-rtdb.europe-west1.firebasedatabase.app/'
+  private readonly url = environment.dbUrl
   public ingridientsEmitter = new EventEmitter();
 
   constructor(private http:HttpClient) { }

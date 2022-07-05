@@ -1,4 +1,3 @@
-import { DocumentationModule } from './documentation/documentation.module';
 import { AboutModule } from './about/about.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,8 +36,7 @@ import { IngridientComponent } from './components/ingridient/ingridient.componen
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AboutModule,
-    DocumentationModule
+    AboutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
