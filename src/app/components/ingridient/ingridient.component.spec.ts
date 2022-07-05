@@ -48,6 +48,7 @@ describe('IngridientComponent', () => {
   it ('Patikrinkite ar komponentui priskyrus quantity ir price atsiranda užrašas su teisingu skaičiu', ()=> {
     component.quantity = 10
     component.price = 2.5
+    component.totalPrice()
     let compiled = fixture.debugElement.nativeElement
     fixture.detectChanges();
     expect(compiled.querySelector('.ingdridient-result').textContent).toContain("25");
