@@ -21,7 +21,7 @@
       </div>
       <div class="col">
         <input
-          type="text"
+          type="number"
           class="form-control"
           placeholder="Price"
           [(ngModel)]="price"
@@ -48,7 +48,9 @@
         <h1 class="ingdridient-name">{{ name }}</h1>
       </div>
       <div class="col">
-        <h3 class="ingdridient-result">{{ result }} Eur.</h3>
+        <h3 class="ingdridient-result" *ngIf="price !== null">
+          {{ result }}
+        </h3>
       </div>
     </div>
   </div>

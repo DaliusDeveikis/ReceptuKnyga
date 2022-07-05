@@ -22,6 +22,7 @@ export class IngridientComponent implements OnInit {
     console.log(this.name,this.quantity,this.price)
     if ( this.quantity != null && this.price != null) {
       this.result = this.quantity * this.price
+      console.log(this.result)
       return this.result
     } else {
       return this.result

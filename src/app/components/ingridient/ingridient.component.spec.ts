@@ -42,7 +42,7 @@ describe('IngridientComponent', () => {
     component.name = "Bulves"
     let compiled = fixture.debugElement.nativeElement
     fixture.detectChanges();
-    expect(compiled.quareSelector('.ingdridient-name').textContent).toContain('Bulves')
+    expect(compiled.querySelector('.ingdridient-name').textContent).toContain('Bulves')
   })
 
   it ('Patikrinkite ar komponentui priskyrus quantity ir price atsiranda užrašas su teisingu skaičiu', ()=> {
@@ -50,7 +50,7 @@ describe('IngridientComponent', () => {
     component.price = 2.5
     let compiled = fixture.debugElement.nativeElement
     fixture.detectChanges();
-    expect(compiled.quareSelector('.ingdridient-result').textContent).toContain('25')
+    expect(compiled.querySelector('.ingdridient-result').textContent).toContain("25");
   })
 
   it ('Patikrinkite ar komponentui priskyrus quantity, o price palikus null nerodomas kainos laukelis', ()=> {
@@ -58,7 +58,7 @@ describe('IngridientComponent', () => {
     component.price = null
     let compiled = fixture.debugElement.nativeElement
     fixture.detectChanges();
-    expect(compiled.quareSelector('.ingdridient-result').textContent).toContain('')
+    expect(compiled.querySelector('.ingdridient-result')).toBeNull()
   })
 
 });
