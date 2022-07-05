@@ -34,7 +34,7 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AboutModule,
+    AboutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
