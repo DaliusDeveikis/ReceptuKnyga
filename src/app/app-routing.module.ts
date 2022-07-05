@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { NewRecipeComponent } from './components/new-recipe/new-recipe.component';
 import { AddIngridientsComponent } from './components/add-ingridients/add-ingridients.component';
+import { IngridientComponent } from './components/ingridient/ingridient.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'recipes/:id', component: RecipeDetailsComponent},
   {path:'new', component: NewRecipeComponent},
   {path:'ingriedient', component: AddIngridientsComponent},
+  {path:'ing', component: IngridientComponent},
 ];
 
 @NgModule({

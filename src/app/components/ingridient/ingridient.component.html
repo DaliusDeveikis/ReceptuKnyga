@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">Ingridiento kainos skaiciavimas</div>
+  <div class="card-body">
+    <h2>Ingridientas</h2>
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          [(ngModel)]="name"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Quantity"
+          [(ngModel)]="quantity"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Price"
+          [(ngModel)]="price"
+        />
+      </div>
+      <div class="col">
+        <button
+          type="button"
+          (click)="totalPrice()"
+          class="btn btn-secondary btn-lg"
+        >
+          Calculate
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-3">
+  <div class="card-header">Rezultatas</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h1 class="ingdridient-name">{{ name }}</h1>
+      </div>
+      <div class="col">
+        <h3 class="ingdridient-result">{{ result }} Eur.</h3>
+      </div>
+    </div>
+  </div>
+</div>

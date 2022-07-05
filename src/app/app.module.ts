@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { RecipeItemComponent } from './components/recipe-list/recipe-item/recipe-item.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { IngridientComponent } from './components/ingridient/ingridient.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     RecipecountComponent,
     NavigationComponent,
     RecipeItemComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    IngridientComponent
   ],
   imports: [
     BrowserModule,
